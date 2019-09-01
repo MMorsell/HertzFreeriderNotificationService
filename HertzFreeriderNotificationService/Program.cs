@@ -6,7 +6,8 @@ namespace HertzFreeriderNotificationService
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var _sms = new SmsNotification();
+            _sms.SendMessage("Testing Mannnennn");
         }
     }
 }

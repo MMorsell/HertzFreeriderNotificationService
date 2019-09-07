@@ -8,14 +8,25 @@ namespace HertzFreeriderNotificationService
 {
     public class WebScraping
     {
-        public bool DownloadNewVersion()
+
+        public int DownloadNewVersion()
         {
-            bool returnbool = false;
-            var webInterface = new HtmlWeb();
+            int numberOfTrips = 0;
 
             var regexMatchOnFalun = new Regex("target[=][\"]stationInfo[\"][>]Falun[<][/]");
+            var webInterface = new HtmlWeb();
 
-            return returnbool;
+            var htmlDocument = webInterface.Load("https://www.hertzfreerider.se/unauth/list_transport_offer.aspx");
+
+            var innerBlockHtml = htmlDocument.DocumentNode.SelectSingleNode("//div[@class = 'block']");
+
+
+
+            var matches = regexMatchOnFalun.Matches(innerBlockHtml.InnerHtml);
+
+            numberOfTrips = matches.Count;
+
+            return numberOfTrips;
         }
     }
 }

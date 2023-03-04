@@ -18,6 +18,7 @@ namespace HertzFreeriderWorkerService
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddSingleton<NotificationService>();
                     services.AddHostedService<Worker>();
                 });
     }
